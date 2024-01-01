@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0w/8iKuwzbjiH458r10FakeZQa36DZrNy3fGUrReEPYpT2cy/Z8UIgyvdH+TIIfzUOlx2d3gkyih9M1l1yQTsw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\denpa\\OneDrive\\Рабочий стол\\TechnicalTask\\ToDo-List\\ToDoList_WebAPI\\ToDoList_WebAPI\\ToDoList_WebAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\denpa\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\denpa\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\denpa\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\denpa\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\denpa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\denpa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
