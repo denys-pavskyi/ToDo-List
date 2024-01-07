@@ -1,4 +1,9 @@
+using AutoMapper;
+using BLL;
+using BLL.Interfaces;
+using BLL.Services;
 using DAL.Data;
+using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ToDoList_WebAPI
@@ -31,6 +36,18 @@ namespace ToDoList_WebAPI
             {
                 options.UseSqlServer(connectionString);
             });
+
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutomapperProfile());
+            });
+            builder.Services.AddSingleton(mapperConfiguration.CreateMapper());
+
+            builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+
+            builder.Services.AddScoped<ITaskService, TaskService>();
+            builder.Services.AddScoped<ITaskCategoryService, TaskCategoryService>();
 
 
             var app = builder.Build();
