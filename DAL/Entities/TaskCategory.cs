@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class TaskCategory
+    public class TaskCategory: BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
-        [Required]
+        [Required, StringLength(100)]
         public string Name { get; set; }
 
         public ICollection<Task> Tasks { get; set;}
