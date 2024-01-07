@@ -9,5 +9,7 @@ namespace DAL.Interfaces
 {
     public interface ITaskRepository: IRepository<Task>
     {
+        Task<IEnumerable<Task>> GetAllWithDetailsAsync();
+        Task<Task> GetByIdWithDetailsAsync(int id);
     }
 }
