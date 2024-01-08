@@ -9,5 +9,7 @@ namespace BLL.Interfaces
 {
     public interface ITaskService: ICrud<TaskModel>
     {
+        Task<bool> UpdateTaskStatusByIdAsync(int taskId, int statusId);
+        Task<bool> UpdateTaskCategoryByIdAsync(int taskId, int categoryId);
     }
 }

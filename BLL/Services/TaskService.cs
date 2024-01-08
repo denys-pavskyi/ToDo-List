@@ -2,12 +2,14 @@
 using BLL.Interfaces;
 using BLL.Models;
 using BLL.Validation;
+using DAL.Entities;
 using DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
 
 namespace BLL.Services
 {
@@ -58,5 +60,47 @@ namespace BLL.Services
             _unitOfWork.TaskRepository.Update(mapped);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<bool> UpdateTaskStatusByIdAsync(int taskId, int statusId)
+        {
+            if (!Enum.IsDefined(typeof(Status), statusId))
+            {
+                throw new ToDoListException("Wrong status id");
+            }
+
+            var task = await _unitOfWork.TaskRepository.GetByIdAsync(taskId);
+            
+            if(task == null)
+            {
+                return false;
+            }
+
+            task.Status = (Status)statusId;
+
+            await _unitOfWork.SaveAsync();
+            return true;
+        }
+        
+
+        public async Task<bool> UpdateTaskCategoryByIdAsync(int taskId, int categoryId)
+        {
+            var task = await _unitOfWork.TaskRepository.GetByIdAsync(taskId);
+
+            if (task == null)
+            {
+                return false;
+            }
+
+            if((await _unitOfWork.TaskCategoryRepository.GetByIdAsync(categoryId)) == null)
+            {
+                throw new ToDoListException("Wrong category id");
+            }
+
+            task.TaskCategoryId = categoryId;
+            await _unitOfWork.SaveAsync();
+            return true;
+        }
+
+
     }
 }

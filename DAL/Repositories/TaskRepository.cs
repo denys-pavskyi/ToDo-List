@@ -72,5 +72,12 @@ namespace DAL.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Entities.Task> GetByIdWithNoTrackingAsync(int id)
+        {
+            return await _context.Tasks
+                .AsNoTracking() 
+                .FirstOrDefaultAsync(t => t.Id == id);
+        }
+
     }
 }

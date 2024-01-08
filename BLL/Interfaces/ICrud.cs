@@ -17,5 +17,5 @@ namespace BLL.Interfaces
         Task UpdateAsync(TModel model);
 
         Task DeleteAsync(int modelId);
-    }
+    }   
 }

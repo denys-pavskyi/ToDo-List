@@ -11,5 +11,6 @@ namespace DAL.Interfaces
     {
         Task<IEnumerable<Task>> GetAllWithDetailsAsync();
         Task<Task> GetByIdWithDetailsAsync(int id);
+        Task<Task> GetByIdWithNoTrackingAsync(int id);
     }
 }
