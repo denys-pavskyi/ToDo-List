@@ -16,23 +16,17 @@ namespace DAL.Data
             Database.EnsureCreated();
         }
 
-
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TaskCategory> TaskCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Task>()
-                .HasOne(x => x.TaskCategory).WithMany(x => x.Tasks).HasForeignKey(x => x.TaskCategoryId).OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<TaskCategory>()
-                .HasMany(x => x.Tasks).WithOne(x => x.TaskCategory).HasForeignKey(x => x.TaskCategoryId).OnDelete(DeleteBehavior.NoAction);
-
+                .HasOne(t => t.TaskCategory).WithMany(tc => tc.Tasks).HasForeignKey(t => t.TaskCategoryId).OnDelete(DeleteBehavior.NoAction);
 
             SeedData(modelBuilder);
 
         }
-
 
         private void SeedData(ModelBuilder modelBuilder)
         {
@@ -60,7 +54,6 @@ namespace DAL.Data
                 new Task { Id = 11, Name = "Grocery shopping", TaskCategoryId = 4, Status = Status.Backlog },
                 new Task { Id = 12, Name = "Plan home maintenance tasks", TaskCategoryId = 4, Status = Status.Backlog }
             );
-
 
         }
 

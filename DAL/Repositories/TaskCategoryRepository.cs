@@ -20,9 +20,6 @@ namespace DAL.Repositories
             _context = toDoListDbContext;
         }
 
-
-
-
         public async Task AddAsync(TaskCategory entity)
         {
             await _context.TaskCategories.AddAsync(entity);
@@ -43,8 +40,6 @@ namespace DAL.Repositories
         {
             return await _context.TaskCategories.ToListAsync();
         }
-
-
 
         public async Task<TaskCategory> GetByIdAsync(int id)
         {

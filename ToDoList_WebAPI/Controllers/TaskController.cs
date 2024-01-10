@@ -10,7 +10,6 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ToDoList_WebAPI.Controllers
 {
-    [Route("api/")]
     [ApiController]
     public class TaskController : ControllerBase
     {
@@ -22,12 +21,11 @@ namespace ToDoList_WebAPI.Controllers
         }
 
         // Get all tasks
-        // GET: api/<TaskController>
-        [HttpGet]
-        [Route("tasks")]
-        public async Task<ActionResult<IEnumerable<TaskModel>>> Get()
+        // GET: /getAllTasks
+        [HttpGet("getAllTasks")]
+        public async Task<ActionResult<IEnumerable<TaskModel>>> GetAllTasks()
         {
-            var tasks = await _service.GetAllAsync();
+            var tasks = await _service.GetAllTasksAsync();
 
             if (tasks == null)
             {
@@ -42,11 +40,11 @@ namespace ToDoList_WebAPI.Controllers
         }
 
         //Get task by id
-        // GET api/<TaskController>/{id}
-        [HttpGet("task/{id}")]
-        public async Task<ActionResult<TaskModel>> GetById(int id)
+        // GET /getTaskById/{id}
+        [HttpGet("getTaskById/{id}")]
+        public async Task<ActionResult<TaskModel>> GetTaskById(int id)
         {
-            var task = await _service.GetByIdAsync(id);
+            var task = await _service.GetTaskByIdAsync(id);
             if (task == null)
             {
                 return NotFound();
@@ -59,9 +57,9 @@ namespace ToDoList_WebAPI.Controllers
 
 
         //Create new task
-        // POST api/TaskPhoto
-        [HttpPost("task")]
-        public async Task<ActionResult> Post([FromBody] TaskModel task)
+        // POST /createNewTask
+        [HttpPost("createNewTask")]
+        public async Task<ActionResult> CreateNewTask([FromBody] TaskModel task)
         {
             if (task == null)
             {
@@ -69,7 +67,7 @@ namespace ToDoList_WebAPI.Controllers
             }
             try
             {
-                await _service.AddAsync(task);
+                await _service.AddTaskAsync(task);
             }
             catch
             {
@@ -82,8 +80,8 @@ namespace ToDoList_WebAPI.Controllers
 
 
         //Update task status by id
-        // PUT api/<TaskController>/{id}/status/{statusId}
-        [HttpPut("task/{id}/status/{statusId}")]
+        // PUT /updateTaskStatusById/task/{id}/status/{statusId}
+        [HttpPut("updateTaskStatusById/task/{id}/status/{statusId}")]
         public async Task<ActionResult> UpdateTaskStatusById(int id, int statusId)
         {
             try
@@ -107,13 +105,13 @@ namespace ToDoList_WebAPI.Controllers
 
 
         //Update task category by id
-        // PUT api/<TaskController>/{id}/category/{statusId}
-        [HttpPut("task/{id}/category/{categoryId}")]
+        // PUT /updateTaskCategoryById/task/{id}/category/{statusId}
+        [HttpPut("updateTaskCategoryById/task/{id}/category/{categoryId}")]
         public async Task<ActionResult> UpdateTaskCategoryById(int id, int categoryId)
         {
             try
             {
-                if (!(await _service.UpdateTaskCategoryByIdAsync(id, categoryId)))
+                if (!(await _service.UpdateTaskCategoryInTaskByIdAsync(id, categoryId)))
                 {
                     return NotFound("Task not found");
                 }
@@ -132,18 +130,18 @@ namespace ToDoList_WebAPI.Controllers
         }
 
         //Remove task by id
-        // DELETE api/<TaskController>/{id}
-        [HttpDelete("task/{id}")]
-        public async Task<ActionResult> Delete(int id)
+        // DELETE /removeTaskById/{id}
+        [HttpDelete("removeTaskById/{id}")]
+        public async Task<ActionResult> RemoveTaskById(int id)
         {
-            var task = await _service.GetByIdAsync(id);
+            var task = await _service.GetTaskByIdAsync(id);
             if (task == null)
             {
                 return NotFound();
             }
             try
             {
-                await _service.DeleteAsync(id);
+                await _service.DeleteTaskAsync(id);
             }
             catch
             {

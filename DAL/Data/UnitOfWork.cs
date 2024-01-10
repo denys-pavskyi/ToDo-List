@@ -14,12 +14,10 @@ namespace DAL.Data
         private TaskRepository taskRepository;
         private TaskCategoryRepository taskCategoryRepository;
 
-
         public UnitOfWork(ToDoListDbContext context)
         {
             dbContext = context;
         }
-
 
         public async Task SaveAsync()
         {

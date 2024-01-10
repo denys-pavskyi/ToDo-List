@@ -21,7 +21,6 @@ namespace BLL
                 .ForMember(tcm => tcm.TaskIds, tc => tc.MapFrom(x => x.Tasks.Select(x => x.Id)))
                 .ReverseMap();
 
-
         }
 
     }

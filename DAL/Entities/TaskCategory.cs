@@ -14,7 +14,7 @@ namespace DAL.Entities
         [Required, StringLength(100)]
         public string Name { get; set; }
 
-        public ICollection<Task> Tasks { get; set;}
+        public ICollection<Task> Tasks { get; set;} = new List<Task>();
 
     }
 }

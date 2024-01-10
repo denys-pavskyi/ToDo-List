@@ -24,7 +24,7 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
-        public async Task AddAsync(TaskModel model)
+        public async Task AddTaskAsync(TaskModel model)
         {
             ModelsValidation.TaskModelValidation(model);
             var mappedTask = _mapper.Map<DAL.Entities.Task>(model);
@@ -35,25 +35,25 @@ namespace BLL.Services
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task DeleteAsync(int modelId)
+        public async Task DeleteTaskAsync(int modelId)
         {
             await _unitOfWork.TaskRepository.DeleteByIdAsync(modelId);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<IEnumerable<TaskModel>> GetAllAsync()
+        public async Task<IEnumerable<TaskModel>> GetAllTasksAsync()
         {
             IEnumerable<DAL.Entities.Task> unmappedTasks = await _unitOfWork.TaskRepository.GetAllWithDetailsAsync();
             return _mapper.Map<IEnumerable<TaskModel>>(unmappedTasks);
         }
 
-        public async Task<TaskModel> GetByIdAsync(int id)
+        public async Task<TaskModel> GetTaskByIdAsync(int id)
         {
             var unmappedTask = await _unitOfWork.TaskRepository.GetByIdWithDetailsAsync(id);
             return _mapper.Map<TaskModel>(unmappedTask);
         }
 
-        public async Task UpdateAsync(TaskModel model)
+        public async Task UpdateTaskAsync(TaskModel model)
         {
             ModelsValidation.TaskModelValidation(model);
             var mapped = _mapper.Map<DAL.Entities.Task>(model);
@@ -80,9 +80,8 @@ namespace BLL.Services
             await _unitOfWork.SaveAsync();
             return true;
         }
-        
 
-        public async Task<bool> UpdateTaskCategoryByIdAsync(int taskId, int categoryId)
+        public async Task<bool> UpdateTaskCategoryInTaskByIdAsync(int taskId, int categoryId)
         {
             var task = await _unitOfWork.TaskRepository.GetByIdAsync(taskId);
 
@@ -100,7 +99,6 @@ namespace BLL.Services
             await _unitOfWork.SaveAsync();
             return true;
         }
-
-
+        
     }
 }

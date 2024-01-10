@@ -26,8 +26,6 @@ namespace ToDoList_Tests.Controllers_Tests
             _controller = new TaskController(_mockService.Object);
         }
 
-
-
         //UpdateTaskStatusById Tests
         [Test]
         public async Task UpdateTaskStatusById_WithValidId_ReturnsOk()
@@ -73,8 +71,6 @@ namespace ToDoList_Tests.Controllers_Tests
             Assert.AreEqual("Wrong status id", ((BadRequestObjectResult)result).Value);
         }
 
-
-
         // GetById tests
         [Test]
         public async Task GetById_ExistingId_ReturnsTaskModel()
@@ -82,7 +78,7 @@ namespace ToDoList_Tests.Controllers_Tests
             // Arrange
             int existingId = 1; 
             var mockTask = new TaskModel { Id = existingId, Name = "Test Task" };
-            _mockService.Setup(x => x.GetByIdAsync(existingId)).ReturnsAsync(mockTask);
+            _mockService.Setup(x => x.GetTaskByIdAsync(existingId)).ReturnsAsync(mockTask);
 
             // Act
             var objectResult = await _controller.GetById(existingId);
@@ -101,7 +97,7 @@ namespace ToDoList_Tests.Controllers_Tests
         {
             // Arrange
             int nonExistingId = 100; // non-existing task ID
-            _mockService.Setup(x => x.GetByIdAsync(nonExistingId)).ReturnsAsync((TaskModel)null);
+            _mockService.Setup(x => x.GetTaskByIdAsync(nonExistingId)).ReturnsAsync((TaskModel)null);
 
             // Act
             var result = await _controller.GetById(nonExistingId);
@@ -109,7 +105,6 @@ namespace ToDoList_Tests.Controllers_Tests
             // Assert
             Assert.IsInstanceOf<NotFoundResult>(result.Result);
         }
-
 
         // Delete Tests
 
@@ -119,7 +114,7 @@ namespace ToDoList_Tests.Controllers_Tests
             // Arrange
             int existingId = 1; // existing task ID
             var mockTask = new TaskModel { Id = existingId, Name = "Test Task" };
-            _mockService.Setup(x => x.GetByIdAsync(existingId)).ReturnsAsync(mockTask);
+            _mockService.Setup(x => x.GetTaskByIdAsync(existingId)).ReturnsAsync(mockTask);
 
             // Act
             var objectResult = await _controller.Delete(existingId);
@@ -130,7 +125,7 @@ namespace ToDoList_Tests.Controllers_Tests
             Assert.IsAssignableFrom<TaskModel>(result.Value);
             var taskModel = (TaskModel)result.Value;
             Assert.AreEqual(existingId, taskModel.Id);
-            _mockService.Verify(x => x.DeleteAsync(existingId), Times.Once);
+            _mockService.Verify(x => x.DeleteTaskAsync(existingId), Times.Once);
         }
 
         [Test]
@@ -138,14 +133,14 @@ namespace ToDoList_Tests.Controllers_Tests
         {
             // Arrange
             int nonExistingId = 100; // Provide a non-existing task ID
-            _mockService.Setup(x => x.GetByIdAsync(nonExistingId)).ReturnsAsync((TaskModel)null);
+            _mockService.Setup(x => x.GetTaskByIdAsync(nonExistingId)).ReturnsAsync((TaskModel)null);
 
             // Act
             var result = await _controller.Delete(nonExistingId);
 
             // Assert
             Assert.IsInstanceOf<NotFoundResult>(result);
-            _mockService.Verify(x => x.DeleteAsync(nonExistingId), Times.Never); 
+            _mockService.Verify(x => x.DeleteTaskAsync(nonExistingId), Times.Never); 
         }
 
         [Test]
@@ -154,15 +149,15 @@ namespace ToDoList_Tests.Controllers_Tests
             // Arrange
             int existingId = 1; // Provide an existing task ID
             var mockTask = new TaskModel { Id = existingId, Name = "Test Task" };
-            _mockService.Setup(x => x.GetByIdAsync(existingId)).ReturnsAsync(mockTask);
-            _mockService.Setup(x => x.DeleteAsync(existingId)).ThrowsAsync(new Exception()); 
+            _mockService.Setup(x => x.GetTaskByIdAsync(existingId)).ReturnsAsync(mockTask);
+            _mockService.Setup(x => x.DeleteTaskAsync(existingId)).ThrowsAsync(new Exception()); 
 
             // Act
             var result = await _controller.Delete(existingId);
 
             // Assert
             Assert.IsInstanceOf<BadRequestResult>(result);
-            _mockService.Verify(x => x.DeleteAsync(existingId), Times.Once);
+            _mockService.Verify(x => x.DeleteTaskAsync(existingId), Times.Once);
         }
 
     }

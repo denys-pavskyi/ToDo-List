@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    public interface ITaskCategoryService: ICrud<TaskCategoryModel>
+    public interface ITaskCategoryService
     {
+        Task<IEnumerable<TaskCategoryModel>> GetAllTaskCategoriesAsync();
 
+        Task<TaskCategoryModel> GetTaskCategoryByIdAsync(int id);
+
+        Task AddTaskCategoryAsync(TaskCategoryModel model);
+
+        Task UpdateTaskCategoryAsync(TaskCategoryModel model);
+
+        Task DeleteTaskCategoryAsync(int modelId);
     }
 }

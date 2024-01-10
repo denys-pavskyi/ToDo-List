@@ -25,7 +25,6 @@ namespace BLL.Validation
             {
                 throw new ToDoListException("Wrong task name");
             }
-         
         }
 
         public static void TaskCategoryModelValidation(TaskCategoryModel model)
@@ -39,7 +38,6 @@ namespace BLL.Validation
             {
                 throw new ToDoListException("Wrong taskCategory name");
             }
-
 
         }
 

@@ -24,7 +24,7 @@ namespace BLL.Services
             _mapper = mapper;
         }
 
-        public async Task AddAsync(TaskCategoryModel model)
+        public async Task AddTaskCategoryAsync(TaskCategoryModel model)
         {
             ModelsValidation.TaskCategoryModelValidation(model);
             var mappedTaskCategory = _mapper.Map<TaskCategory>(model);
@@ -35,25 +35,25 @@ namespace BLL.Services
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task DeleteAsync(int modelId)
+        public async Task DeleteTaskCategoryAsync(int modelId)
         {
             await _unitOfWork.TaskCategoryRepository.DeleteByIdAsync(modelId);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<IEnumerable<TaskCategoryModel>> GetAllAsync()
+        public async Task<IEnumerable<TaskCategoryModel>> GetAllTaskCategoriesAsync()
         {
             IEnumerable<TaskCategory> unmappedTaskCategories = await _unitOfWork.TaskCategoryRepository.GetAllWithDetailsAsync();
             return _mapper.Map<IEnumerable<TaskCategoryModel>>(unmappedTaskCategories);
         }
 
-        public async Task<TaskCategoryModel> GetByIdAsync(int id)
+        public async Task<TaskCategoryModel> GetTaskCategoryByIdAsync(int id)
         {
             var unmappedTaskCategory = await _unitOfWork.TaskCategoryRepository.GetByIdWithDetailsAsync(id);
             return _mapper.Map<TaskCategoryModel>(unmappedTaskCategory);
         }
 
-        public async Task UpdateAsync(TaskCategoryModel model)
+        public async Task UpdateTaskCategoryAsync(TaskCategoryModel model)
         {
             ModelsValidation.TaskCategoryModelValidation(model);
             var mapped = _mapper.Map<TaskCategory>(model);

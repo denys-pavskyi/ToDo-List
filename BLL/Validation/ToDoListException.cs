@@ -26,5 +26,6 @@ namespace BLL.Validation
             : base(info, context)
         {
         }
+
     }
 }
