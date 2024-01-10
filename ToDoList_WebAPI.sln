@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoList_WebAPI", "ToDoList
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{2737A0B7-D59D-4F43-AC68-701667C0BC6E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{E75B66A4-5C7D-477A-88F8-499FC18A0422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList_Tests", "ToDoList_Tests\ToDoList_Tests.csproj", "{F753EAF3-B5D1-4455-B2D4-4740D6E81B82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{2737A0B7-D59D-4F43-AC68-701667C0BC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2737A0B7-D59D-4F43-AC68-701667C0BC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2737A0B7-D59D-4F43-AC68-701667C0BC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E75B66A4-5C7D-477A-88F8-499FC18A0422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E75B66A4-5C7D-477A-88F8-499FC18A0422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E75B66A4-5C7D-477A-88F8-499FC18A0422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E75B66A4-5C7D-477A-88F8-499FC18A0422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F753EAF3-B5D1-4455-B2D4-4740D6E81B82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F753EAF3-B5D1-4455-B2D4-4740D6E81B82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F753EAF3-B5D1-4455-B2D4-4740D6E81B82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F753EAF3-B5D1-4455-B2D4-4740D6E81B82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
